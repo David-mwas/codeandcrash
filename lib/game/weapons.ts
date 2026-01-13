@@ -10,6 +10,12 @@ export type WeaponType =
   | "minigun"
   | "railgun"
   | "flamethrower"
+  | "burstRifle"
+  | "toxicSprayer"
+  | "lightningGun"
+  | "vortexCannon"
+  | "nullifier"
+  | "apocalypse"
 
 export interface WeaponConfig {
   id: WeaponType
@@ -29,7 +35,7 @@ export interface WeaponConfig {
   unlockWave: number
   unlockLevel: number
   color: string
-  tier: 1 | 2 | 3 | 4 // Weapon tier for organization
+  tier: 1 | 2 | 3 | 4 | 5
 }
 
 export const WEAPONS: Record<WeaponType, WeaponConfig> = {
@@ -73,6 +79,26 @@ export const WEAPONS: Record<WeaponType, WeaponConfig> = {
     color: "#00ff88",
     tier: 1,
   },
+  burstRifle: {
+    id: "burstRifle",
+    name: "TRI-BURST",
+    description: "Fires 3-round bursts with high accuracy",
+    fireRate: 18,
+    damage: 12,
+    bulletSpeed: 14,
+    ammo: 36,
+    maxAmmo: 36,
+    reloadTime: 65,
+    bulletCount: 3,
+    spread: 0.08,
+    explosive: false,
+    explosionRadius: 0,
+    cost: 280,
+    unlockWave: 4,
+    unlockLevel: 2,
+    color: "#44ff88",
+    tier: 2,
+  },
   shotgun: {
     id: "shotgun",
     name: "DATA SCATTER",
@@ -111,6 +137,46 @@ export const WEAPONS: Record<WeaponType, WeaponConfig> = {
     unlockWave: 7,
     unlockLevel: 4,
     color: "#ffff00",
+    tier: 2,
+  },
+  spread: {
+    id: "spread",
+    name: "BROADCAST",
+    description: "Fires bullets in all directions",
+    fireRate: 30,
+    damage: 12,
+    bulletSpeed: 10,
+    ammo: 15,
+    maxAmmo: 15,
+    reloadTime: 85,
+    bulletCount: 8,
+    spread: Math.PI * 2,
+    explosive: false,
+    explosionRadius: 0,
+    cost: 450,
+    unlockWave: 6,
+    unlockLevel: 4,
+    color: "#00ffff",
+    tier: 2,
+  },
+  toxicSprayer: {
+    id: "toxicSprayer",
+    name: "MALWARE MIST",
+    description: "Sprays toxic code that damages over time",
+    fireRate: 5,
+    damage: 4,
+    bulletSpeed: 7,
+    ammo: 80,
+    maxAmmo: 80,
+    reloadTime: 90,
+    bulletCount: 2,
+    spread: 0.6,
+    explosive: false,
+    explosionRadius: 0,
+    cost: 550,
+    unlockWave: 7,
+    unlockLevel: 4,
+    color: "#00ff00",
     tier: 2,
   },
   plasma: {
@@ -153,25 +219,25 @@ export const WEAPONS: Record<WeaponType, WeaponConfig> = {
     color: "#ff00ff",
     tier: 3,
   },
-  spread: {
-    id: "spread",
-    name: "BROADCAST",
-    description: "Fires bullets in all directions",
-    fireRate: 30,
-    damage: 12,
-    bulletSpeed: 10,
-    ammo: 15,
-    maxAmmo: 15,
-    reloadTime: 85,
-    bulletCount: 8,
-    spread: Math.PI * 2,
+  lightningGun: {
+    id: "lightningGun",
+    name: "STATIC SHOCK",
+    description: "Chain lightning jumps between enemies",
+    fireRate: 12,
+    damage: 18,
+    bulletSpeed: 30,
+    ammo: 25,
+    maxAmmo: 25,
+    reloadTime: 75,
+    bulletCount: 1,
+    spread: 0.05,
     explosive: false,
     explosionRadius: 0,
-    cost: 450,
-    unlockWave: 6,
-    unlockLevel: 4,
-    color: "#00ffff",
-    tier: 2,
+    cost: 700,
+    unlockWave: 9,
+    unlockLevel: 5,
+    color: "#88ffff",
+    tier: 3,
   },
   rocket: {
     id: "rocket",
@@ -192,6 +258,46 @@ export const WEAPONS: Record<WeaponType, WeaponConfig> = {
     unlockLevel: 6,
     color: "#ff0066",
     tier: 3,
+  },
+  flamethrower: {
+    id: "flamethrower",
+    name: "HEAT SINK",
+    description: "Short range flame spray, burns enemies",
+    fireRate: 3,
+    damage: 3,
+    bulletSpeed: 6,
+    ammo: 150,
+    maxAmmo: 150,
+    reloadTime: 100,
+    bulletCount: 3,
+    spread: 0.5,
+    explosive: false,
+    explosionRadius: 0,
+    cost: 900,
+    unlockWave: 11,
+    unlockLevel: 6,
+    color: "#ff6600",
+    tier: 3,
+  },
+  vortexCannon: {
+    id: "vortexCannon",
+    name: "BLACK HOLE",
+    description: "Creates gravity wells that pull enemies in",
+    fireRate: 50,
+    damage: 35,
+    bulletSpeed: 6,
+    ammo: 4,
+    maxAmmo: 4,
+    reloadTime: 110,
+    bulletCount: 1,
+    spread: 0,
+    explosive: true,
+    explosionRadius: 120,
+    cost: 950,
+    unlockWave: 12,
+    unlockLevel: 7,
+    color: "#6600ff",
+    tier: 4,
   },
   minigun: {
     id: "minigun",
@@ -233,25 +339,45 @@ export const WEAPONS: Record<WeaponType, WeaponConfig> = {
     color: "#00ffaa",
     tier: 4,
   },
-  flamethrower: {
-    id: "flamethrower",
-    name: "HEAT SINK",
-    description: "Short range flame spray, burns enemies",
-    fireRate: 3,
-    damage: 3,
-    bulletSpeed: 6,
-    ammo: 150,
-    maxAmmo: 150,
-    reloadTime: 100,
-    bulletCount: 3,
-    spread: 0.5,
+  nullifier: {
+    id: "nullifier",
+    name: "NULL POINTER",
+    description: "Erases enemies from existence instantly",
+    fireRate: 80,
+    damage: 200,
+    bulletSpeed: 50,
+    ammo: 2,
+    maxAmmo: 2,
+    reloadTime: 200,
+    bulletCount: 1,
+    spread: 0,
     explosive: false,
     explosionRadius: 0,
-    cost: 900,
-    unlockWave: 11,
-    unlockLevel: 6,
-    color: "#ff6600",
-    tier: 3,
+    cost: 2000,
+    unlockWave: 20,
+    unlockLevel: 10,
+    color: "#ffffff",
+    tier: 5,
+  },
+  apocalypse: {
+    id: "apocalypse",
+    name: "SYSTEM CRASH",
+    description: "Ultimate weapon - massive AOE devastation",
+    fireRate: 90,
+    damage: 150,
+    bulletSpeed: 5,
+    ammo: 3,
+    maxAmmo: 3,
+    reloadTime: 180,
+    bulletCount: 1,
+    spread: 0,
+    explosive: true,
+    explosionRadius: 200,
+    cost: 2500,
+    unlockWave: 25,
+    unlockLevel: 12,
+    color: "#ff0000",
+    tier: 5,
   },
 }
 
@@ -264,4 +390,38 @@ export function getAvailableWeapons(wave: number, level: number, unlockedWeapons
     if (unlockedWeapons.includes(w.id)) return true
     return w.unlockWave <= wave && w.unlockLevel <= level
   })
+}
+
+export function getTierName(tier: number): string {
+  switch (tier) {
+    case 1:
+      return "BASIC"
+    case 2:
+      return "ADVANCED"
+    case 3:
+      return "ELITE"
+    case 4:
+      return "LEGENDARY"
+    case 5:
+      return "MYTHIC"
+    default:
+      return "UNKNOWN"
+  }
+}
+
+export function getTierColor(tier: number): string {
+  switch (tier) {
+    case 1:
+      return "#888888"
+    case 2:
+      return "#00ff00"
+    case 3:
+      return "#0088ff"
+    case 4:
+      return "#ff00ff"
+    case 5:
+      return "#ffaa00"
+    default:
+      return "#ffffff"
+  }
 }

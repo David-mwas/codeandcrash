@@ -16,6 +16,12 @@ export interface SaveData {
     shieldStrength: number
     critChance: number
     xpBonus: number
+    armor: number
+    lifesteal: number
+    explosionRadius: number
+    bulletPierce: number
+    dashDistance: number
+    luckyDrops: number
   }
   tutorialComplete: boolean
   onboardingComplete: boolean
@@ -46,6 +52,12 @@ export function getDefaultSaveData(): SaveData {
       shieldStrength: 0,
       critChance: 0,
       xpBonus: 0,
+      armor: 0,
+      lifesteal: 0,
+      explosionRadius: 0,
+      bulletPierce: 0,
+      dashDistance: 0,
+      luckyDrops: 0,
     },
     tutorialComplete: false,
     onboardingComplete: false,

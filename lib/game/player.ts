@@ -204,6 +204,9 @@ export class Player {
         const angle = baseAngle + spreadStart + spreadStep * i + (Math.random() - 0.5) * 0.1
         const vx = Math.cos(angle) * bulletSpeed
         const vy = Math.sin(angle) * bulletSpeed
+
+        const pierce = weapon.id === "laser" ? 5 + this.game.upgrades.pierce : this.game.upgrades.pierce
+
         this.game.bullets.push(
           new Bullet(
             this.x + Math.cos(angle) * 25,
@@ -211,8 +214,10 @@ export class Player {
             vx,
             vy,
             damage,
-            this.game.upgrades.pierce,
+            pierce,
             weapon.color,
+            weapon.explosive,
+            weapon.explosionRadius,
           ),
         )
       }
@@ -319,7 +324,7 @@ export class Player {
       if (amount <= 0) return
     }
 
-    this.health -= amount
+    this.health = Math.round(this.health - amount)
     this.invulnerable = 30
     soundManager.playerHit()
 
@@ -337,6 +342,10 @@ export class Player {
       this.xpToLevel = Math.floor(this.xpToLevel * 1.5)
       this.game.onLevelUp()
     }
+  }
+
+  addXP(amount: number) {
+    this.gainXP(amount)
   }
 
   render(ctx: CanvasRenderingContext2D, mouse: { x: number; y: number }) {
